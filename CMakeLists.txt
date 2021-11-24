@@ -7,8 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
+set(SOURCES main.cpp)
+qt_add_resources(SOURCES resources.qrc)
+
 qt_add_executable(appelements
-    main.cpp
+    ${SOURCES}
 )
 
 
@@ -17,6 +20,7 @@ qt_add_qml_module(appelements
     VERSION 1.0
     QML_FILES main.qml TableCell.qml Table.qml data.js
 )
+
 
 target_compile_definitions(appelements
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)

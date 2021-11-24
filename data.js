@@ -1,3 +1,4 @@
+//Based on data obtained from pubchem.ncbi.nlm.nih.gov
 var elementsData =
 {
     "H":
