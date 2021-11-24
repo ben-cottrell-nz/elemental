@@ -7,7 +7,7 @@ ApplicationWindow {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Elements")
     color: "#2d2d2d"
     header: ToolBar {
         RowLayout {
