@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 ApplicationWindow {
+    id: window
     width: 640
     height: 480
     visible: true
@@ -12,12 +13,13 @@ ApplicationWindow {
         RowLayout {
             anchors.fill: parent
             ToolButton {
-                text: qsTr("‹")
-                enabled: stackView.depth > 0
-                onClicked: stack.pop()
+                visible: stackView.depth > 1
+                text: "🡄 Back"
+                onClicked: stackView.pop()
             }
             TextField {
                 id: txtSearch
+                visible: stackView.depth == 1
                 placeholderText: "Search"
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
@@ -26,19 +28,26 @@ ApplicationWindow {
                     table.filter(txtSearch.text)
                 }
             }
-            ToolButton {
-                text: qsTr("⋮")
-                onClicked: menu.open()
-            }
-
         }
     }
+    Component {
+        id: elemInfo
+        ElemInfo {
+            property string currentElem
+            elem: currentElem
+        }
+    }
+
     StackView {
         id: stackView
         anchors.fill: parent
-        Table {
+        initialItem: Table {
             id: table
             anchors.fill: parent
+            onCellClicked: function (elem) {
+                stackView.push(elemInfo, { currentElem: elem})
+                //elemInfo.createObject(stackView, { currentElem: elem})
+            }
         }
     }
 }

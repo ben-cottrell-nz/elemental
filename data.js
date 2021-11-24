@@ -1,4 +1,33 @@
 //Based on data obtained from pubchem.ncbi.nlm.nih.gov
+var elementsDataColumns = [
+            "Atomic Number",
+            "Symbol",
+            "Name",
+            "Atomic Mass",
+            "CPK Hex Color",
+            "Electron Configuration",
+            "Electronegativity",
+            "Atomic Radius",
+            "Ionization Energy",
+            "Electron Affinity",
+            "Oxidation States",
+            "Standard State",
+            "Melting Point",
+            "Boiling Point",
+            "Density",
+            "Group Block",
+            "Year Discovered"
+          ];
+function getFieldsForElementAsString(element) {
+    var str = "";
+    elementsData[element].Cell.forEach((a,n)=>{
+                                           if (n != 2 || n != 4) {
+        str += elementsDataColumns[n] + ": " + a + "<br>";
+                                           }
+                                       });
+    return str;
+}
+
 var elementsData =
 {
     "H":

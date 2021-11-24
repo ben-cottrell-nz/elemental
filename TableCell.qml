@@ -1,9 +1,22 @@
 import QtQuick 2.0
 
 Item {
+    id: item
     property alias backgroundColor : r.color;
     property string elem : "?";
     property int num : 0
+    property alias mouseArea: mouseArea
+    signal clicked(string elem)
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        enabled: elem != "\t"
+        onClicked: {
+            item.clicked(elem)
+        }
+    }
+
     Rectangle {
         id: r
         anchors.fill: parent
@@ -11,7 +24,7 @@ Item {
         opacity: 0.56
         visible: elem != '\t'
         radius: 5
-        anchors.margins: 2   
+        anchors.margins: 2
     }
     Text {
         id: txtNum
@@ -19,7 +32,9 @@ Item {
         text: num
         anchors.top: r.top
         anchors.left: r.left
-        font.pixelSize: txtElem.font.pixelSize *0.9
+        anchors.margins: 2
+        font.pixelSize: parent.height * 0.28
+        font.bold: true
         color: backgroundColor.lighter(3)
     }
 
@@ -27,9 +42,11 @@ Item {
         id: txtElem
         text: elem
         anchors.bottom: r.bottom
+        anchors.left: r.left
+        anchors.margins: 2
         width: r.width
         color: backgroundColor.lighter(2)
-        font.pixelSize: parent.width * 0.5
+        font.pixelSize: parent.width * 0.45
         font.bold: true
     }
 }

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>qtquickcontrols2.conf</file>
+        <file>ElemInfo.qml</file>
     </qresource>
 </RCC>

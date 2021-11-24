@@ -14,13 +14,11 @@ qt_add_executable(appelements
     ${SOURCES}
 )
 
-
 qt_add_qml_module(appelements
     URI elements
     VERSION 1.0
-    QML_FILES main.qml TableCell.qml Table.qml data.js
+    QML_FILES main.qml TableCell.qml Table.qml data.js ElemInfo.qml
 )
-
 
 target_compile_definitions(appelements
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
